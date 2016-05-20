@@ -22,11 +22,10 @@ class LogsAggregator
             if (userIPs[user].Contains(IP))
                 continue;
             userIPs[user].Add(IP);
-            userIPs[user].Sort();
-            //userIPs[user].OrderBy(x => x.CompareTo("y"));
         }
         foreach (var kvp in userWithDuration)
         {
+            userIPs[kvp.Key].Sort();
             Console.WriteLine("{0}: {1} [{2}]", kvp.Key, kvp.Value, string.Join(", ", userIPs[kvp.Key]));
         }
     }
