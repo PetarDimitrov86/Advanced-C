@@ -33,19 +33,8 @@ class SumBigNumbers
                 result.Append(remainder);
         }
         string finalAnswer = string.Empty;
-
         for (int i = result.Length - 1; i >= 0; i--)
-        {
-            if (result[i] != '0')
-            {
-                finalAnswer += result[i];
-                break;
-            }
-            else
-                result.Remove(i, 1);
-        }
-        for (int i = result.Length - 2; i >= 0; i--)
             finalAnswer += result[i];
-        Console.WriteLine(finalAnswer);
+        Console.WriteLine(finalAnswer.TrimStart('0'));
     }
 }
