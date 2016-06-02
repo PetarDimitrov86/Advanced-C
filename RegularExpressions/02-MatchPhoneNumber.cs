@@ -13,6 +13,5 @@ class MatchPhoneNumber
                 Console.WriteLine(number);
             number = Console.ReadLine();
         }
-
     }
 }
