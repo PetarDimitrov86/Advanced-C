@@ -14,9 +14,5 @@ public static class ExceptionMessages
     public const string ComparisonOfFilesWithDifferentSizes = "Files not of equal size, certain mismatch";
     public const string ForbiddenSymbolsContainedInName = "The given name contains symbols that are not allowed to be used in names of files and folders.";
     public const string UnableToGoHigherInPartitionHierarchy = "Cannot traverse further up the partition hierarchy";
-    public static void DisplayInvalidCommandMessage(string input)
-    {
-        OutputWriter.DisplayException($"The command '{input}' is invalid");
-    }
     public const string UnableToParseNumber = "The sequence you've written is not a valid number.";
 }

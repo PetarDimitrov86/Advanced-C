@@ -18,5 +18,7 @@ public class Launcher
 
         //IOManager.ChangeCurrentDirectoryAbsolute(@"C:\Windows");
         //IOManager.TraverseDirectory(20);
+
+        InputReader.StartReadingCommands();
     }
 }

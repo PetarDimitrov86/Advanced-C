@@ -12,6 +12,7 @@ public static class InputReader
         string input = Console.ReadLine();
         while (input != endCommand)
         {
+            CommandInterpreter.IntepredCommand(input);
             OutputWriter.WriteMessage($"{SessionData.currentPath}> ");
             input = Console.ReadLine();
             input = input.Trim();
