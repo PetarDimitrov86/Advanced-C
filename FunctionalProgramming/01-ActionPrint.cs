@@ -1,13 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 class ActionPrint
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
         string[] text = Console.ReadLine().Split(' ').ToArray();
-        Action<string> print = message => Console.WriteLine(message);
+        Action<string> firstAction = Print;
         foreach (var item in text)
-            print(item);
+            firstAction(item);
+    }
+    public static void Print(string num)
+    {
+        Console.WriteLine(num);
     }
 }
