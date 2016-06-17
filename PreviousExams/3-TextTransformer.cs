@@ -18,7 +18,7 @@ class TextTransformer
         string whiteSpacePattern = @"\s+";
         Regex whiteSpaceRegex = new Regex(whiteSpacePattern);
         string resultNoWhiteSpace = whiteSpaceRegex.Replace(fullText.ToString(), " ");
-        string patternMessage = @"(\$|\%|\'|\&)([\S*\s?][^\&\'\%\$]*)(\1)";
+        string patternMessage = @"([$%&'])([^$%&']+)\1";
         Regex extractMessage = new Regex(patternMessage);
         StringBuilder finalAnswer = new StringBuilder();
         MatchCollection matches = extractMessage.Matches(resultNoWhiteSpace);
