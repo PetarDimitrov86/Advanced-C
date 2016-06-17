@@ -24,7 +24,7 @@ class TextTransformer
         MatchCollection matches = extractMessage.Matches(resultNoWhiteSpace);
         foreach (Match match in matches)
         {
-            string multiplier = match.Groups[1].Value;
+           string multiplier = match.Groups[1].Value;
             int points = 0;
             switch (multiplier)
             {
