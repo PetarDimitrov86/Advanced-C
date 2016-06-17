@@ -19,7 +19,7 @@ class BunkerBuster
         }
 
         string bomb = Console.ReadLine();
-        while (bomb != "cease fire!")
+         while (bomb != "cease fire!")
         {
             string[] bombAttributes = bomb.Split();
             int bombRow = int.Parse(bombAttributes[0]);
