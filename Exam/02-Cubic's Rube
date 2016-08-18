@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        int size = int.Parse(Console.ReadLine());
+        string input = Console.ReadLine();
+        long[,,] matrix = new long[size, size, size];
+        long damageDone = 0;
+        long cellsLeft = size * size * size;
+        while (input != "Analyze")
+        {
+            long[] data = input.Split().Select(long.Parse).ToArray();
+            long targetRow = data[0];
+            long targetCol = data[1];
+            long targetZ = data[2];
+            long damage = data[3];
+            bool rowOK = targetRow >= 0 && targetRow < size;
+            bool colOK = targetCol >= 0 && targetRow < size;
+            bool zOK = targetZ >= 0 && targetZ < size;
+            if (rowOK && colOK && zOK && damage > 0)
+            {
+                cellsLeft--;
+                damageDone += damage;
+            }
+            input = Console.ReadLine();
+        }
+        Console.WriteLine(damageDone);
+        Console.WriteLine(cellsLeft);
+    }
+}
