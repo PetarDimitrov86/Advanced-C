@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        string input1 = Console.ReadLine();
+        while (input1 != "Over!")
+        {            
+            string input2 = Console.ReadLine();
+            if (input2 == "Over!")
+            {
+                break;
+            }
+            int n = int.Parse(input2);
+            StringBuilder result = new StringBuilder();
+            string patter = @"^([0-9]+)([a-zA-Z]" + "{" + n + "}" + @")([\d\W_]*)$";
+            Regex regex = new Regex(patter);
+            Match match = regex.Match(input1);
+            string leftIndexes = match.Groups[1].Value;
+            string message = match.Groups[2].Value;
+            string rightIndexes = match.Groups[3].Value;
+            for (int i = 0; i < leftIndexes.Length; i++)
+            {              
+                try
+                {
+                    int currentIndex = int.Parse(leftIndexes[i].ToString());
+                    result.Append(message[currentIndex]);
+                }
+                catch (Exception)
+                {
+                    result.Append(" ");
+                }
+            }
+            for (int i = 0; i < rightIndexes.Length; i++)
+            {          
+                try
+                {
+                    int currentIndex = int.Parse(rightIndexes[i].ToString());
+                    result.Append(message[currentIndex]);
+                }
+                catch (Exception)
+                {
+                    result.Append(" ");
+                }
+            }
+            if (message.Length > 0)
+            {
+                Console.WriteLine("{0} == {1}", message, result.ToString());
+            }
+            input1 = Console.ReadLine();
+        }
+    }
+}
