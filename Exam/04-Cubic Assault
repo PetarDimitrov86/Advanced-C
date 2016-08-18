@@ -1,0 +1,60 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        string input = Console.ReadLine();
+        string pattern = @"([a-zA-Z\s]*)\s*->\s*([a-zA-Z]+)\s*->\s*([\-0-9]+)";
+        Regex regex = new Regex(pattern);
+        Dictionary<string, Dictionary<string, long>> stats = new Dictionary<string, Dictionary<string, long>>();
+        while (input != "Count em all")
+        {
+            Match match = regex.Match(input);
+            string region = match.Groups[1].Value.Trim();
+            string colour = match.Groups[2].Value.Trim();
+            int ammount = int.Parse(match.Groups[3].Value.Trim());
+            if (!stats.ContainsKey(region))
+            {
+                stats.Add(region, new Dictionary<string, long>());
+            }
+            if (!stats[region].ContainsKey("Red"))
+            {
+                stats[region].Add("Red", 0);
+            }
+            if (!stats[region].ContainsKey("Green"))
+            {
+                stats[region].Add("Green", 0);
+            }
+            if (!stats[region].ContainsKey("Black"))
+            {
+                stats[region].Add("Black", 0);
+            }
+            stats[region][colour] += ammount;
+            while (stats[region]["Green"] >= 1000000)
+            {
+                stats[region]["Red"]++;
+                stats[region]["Green"] -= 1000000;
+            }
+            while (stats[region]["Red"] >= 1000000)
+            {
+                stats[region]["Black"]++;
+                stats[region]["Red"] -= 1000000;
+            }
+            input = Console.ReadLine();
+        }
+        var result = stats.OrderByDescending(x => x.Value["Black"]).ThenBy(y => y.Key.Length).ThenBy(z => z.Key);
+        foreach (var kvp in result)
+        {
+            Console.WriteLine(kvp.Key);
+            foreach (var innerPair in kvp.Value.OrderByDescending(x => x.Value).ThenBy(y => y.Key))
+            {
+                Console.WriteLine("-> {0} : {1}", innerPair.Key, innerPair.Value);
+            }
+        }
+    }
+}
